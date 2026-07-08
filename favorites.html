@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<title>즐겨찾기 보관함 | 당신을 위한 한마디</title>
+<meta name="description" content="내가 저장한 성경구절, 명언, 사자성어를 모아보는 즐겨찾기 보관함입니다.">
+<meta name="robots" content="noindex">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@400;500;700&family=Noto+Sans+KR:wght@400;500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+<!--
+  [애드센스 안내] 승인 후 아래 스크립트의 ca-pub-XXXXXXXXXXXXXXXX 를
+  본인 퍼블리셔 ID로 교체하고 주석을 해제하면 이 페이지에도 광고가 표시됩니다.
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-XXXXXXXXXXXXXXXX" crossorigin="anonymous"></script>
+-->
+</head>
+<body>
+
+<div class="page">
+
+  <header class="site-header">
+    <a href="index.html" style="text-decoration:none;color:inherit;">
+      <h1 class="logo">당신을 위한 한마디</h1>
+    </a>
+    <p class="tagline">즐겨찾기 보관함</p>
+  </header>
+
+  <div class="ad-slot ad-slot--top">
+    <!--
+    <ins class="adsbygoogle"
+         style="display:block"
+         data-ad-client="ca-pub-XXXXXXXXXXXXXXXX"
+         data-ad-slot="XXXXXXXXXX"
+         data-ad-format="auto"
+         data-full-width-responsive="true"></ins>
+    <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+    -->
+  </div>
+
+  <main class="main list-main">
+    <div id="fav-container"></div>
+
+    <p class="home-link"><a href="index.html">홈으로 돌아가기</a> · <a href="quotes/index.html">전체 문장 목록</a></p>
+
+  <div class="ad-slot ad-slot--bottom">
+    <!--
+    <ins class="adsbygoogle"
+         style="display:block"
+         data-ad-client="ca-pub-XXXXXXXXXXXXXXXX"
+         data-ad-slot="XXXXXXXXXX"
+         data-ad-format="auto"
+         data-full-width-responsive="true"></ins>
+    <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+    -->
+  </div>
+  </main>
+
+  <footer class="site-footer">
+    <p>&copy; <span id="year"></span> 당신을 위한 한마디.</p>
+    <p><a href="about.html">소개</a> · <a href="privacy.html">개인정보처리방침</a> · <a href="terms.html">이용약관</a> · <a href="contact.html">문의</a></p>
+  </footer>
+
+</div>
+
+<script src="data.js"></script>
+<script>
+(function () {
+  "use strict";
+
+  var FAV_KEY = "favoriteIds";
+
+  function getFavoriteIds() {
+    try {
+      var raw = localStorage.getItem(FAV_KEY);
+      return raw ? JSON.parse(raw) : [];
+    } catch (e) {
+      return [];
+    }
+  }
+
+  function setFavoriteIds(ids) {
+    try {
+      localStorage.setItem(FAV_KEY, JSON.stringify(ids));
+    } catch (e) {}
+  }
+
+  function removeFavorite(id) {
+    var ids = getFavoriteIds().filter(function (x) { return x !== id; });
+    setFavoriteIds(ids);
+    render();
+  }
+
+  function esc(s) {
+    var d = document.createElement("div");
+    d.textContent = s;
+    return d.innerHTML;
+  }
+
+  function render() {
+    var ids = getFavoriteIds();
+    var container = document.getElementById("fav-container");
+
+    if (ids.length === 0) {
+      container.innerHTML = '<p class="fav-empty">아직 즐겨찾기한 문장이 없어요.<br>마음에 드는 문장을 하트(♡)로 저장해보세요.</p>';
+      return;
+    }
+
+    var items = ids
+      .map(function (id) {
+        return CONTENT_DATA.find(function (it) { return it.id === id; });
+      })
+      .filter(Boolean);
+
+    if (items.length === 0) {
+      container.innerHTML = '<p class="fav-empty">아직 즐겨찾기한 문장이 없어요.<br>마음에 드는 문장을 하트(♡)로 저장해보세요.</p>';
+      return;
+    }
+
+    var html = '<ul class="list-ul">' + items.map(function (it) {
+      var tags = (it.tags || []).map(function (t) {
+        return '<span class="tag-pill">' + esc(t) + '</span>';
+      }).join('');
+      return '<li class="fav-item">' +
+        '<div class="fav-item-body"><a href="quotes/' + it.id + '.html">' + esc(it.text) + '</a> ' +
+        '<span class="list-source">— ' + esc(it.source) + '</span> ' + tags + '</div>' +
+        '<button class="fav-remove" data-id="' + it.id + '">제거</button>' +
+        '</li>';
+    }).join('') + '</ul>';
+
+    container.innerHTML = html;
+
+    Array.prototype.forEach.call(container.querySelectorAll(".fav-remove"), function (btn) {
+      btn.addEventListener("click", function () {
+        removeFavorite(btn.getAttribute("data-id"));
+      });
+    });
+  }
+
+  render();
+
+  var yearEl = document.getElementById("year");
+  if (yearEl) yearEl.textContent = new Date().getFullYear();
+})();
+</script>
+<script src="/consent-banner.js" defer></script>
+</body>
+</html>

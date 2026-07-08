@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<title>당신을 위한 한마디 | 성경구절 &amp; 명언</title>
+<meta name="description" content="오늘도 행복할 당신을 위한 힘이 되는 한마디. 예쁜 카드로 저장하고 친구에게 공유해보세요.">
+
+<!-- Open Graph (공유 시 미리보기) -->
+<meta property="og:title" content="당신을 위한 한마디 | 성경구절 & 명언">
+<meta property="og:description" content="오늘도 행복할 당신을 위한 힘이 되는 한마디. 예쁜 카드로 저장하고 친구에게 공유해보세요.">
+<meta property="og:type" content="website">
+<meta name="twitter:card" content="summary">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@400;500;700&family=Noto+Sans+KR:wght@400;500;700&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="style.css">
+
+<!--
+  ====================================================================
+  [애드센스 안내]
+  구글 애드센스 승인을 받은 뒤, 아래 스크립트의 ca-pub-XXXXXXXXXXXXXXXX 를
+  본인의 퍼블리셔 ID로 교체하고 주석을 해제하세요.
+  승인 전에는 계정 확인용 메타태그만 넣어도 됩니다.
+  ====================================================================
+-->
+<!--
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-XXXXXXXXXXXXXXXX" crossorigin="anonymous"></script>
+-->
+</head>
+<body>
+
+<div class="page">
+
+  <header class="site-header">
+    <h1 class="logo">당신을 위한 한마디</h1>
+    <p class="tagline">오늘도 행복할 당신을 위한 힘이 되는 한마디</p>
+  </header>
+
+  <!-- 상단 광고 슬롯 (선택) -->
+  <div class="ad-slot ad-slot--top">
+    <!--
+    <ins class="adsbygoogle"
+         style="display:block"
+         data-ad-client="ca-pub-XXXXXXXXXXXXXXXX"
+         data-ad-slot="XXXXXXXXXX"
+         data-ad-format="auto"
+         data-full-width-responsive="true"></ins>
+    <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+    -->
+  </div>
+
+  <main class="main">
+
+    <div class="filter-bar" role="group" aria-label="카테고리 선택">
+      <button class="filter-btn is-active" data-filter="all">전체</button>
+      <button class="filter-btn" data-filter="bible">성경구절</button>
+      <button class="filter-btn" data-filter="quote">명언</button>
+      <button class="filter-btn" data-filter="idiom">사자성어</button>
+    </div>
+
+    <p class="tag-label">기분/상황으로 찾기</p>
+    <div class="tag-bar" role="group" aria-label="기분/상황별 태그">
+      <button class="tag-btn is-active" data-tag="all">전체</button>
+      <button class="tag-btn" data-tag="위로">위로</button>
+      <button class="tag-btn" data-tag="사랑">사랑</button>
+      <button class="tag-btn" data-tag="도전">도전</button>
+      <button class="tag-btn" data-tag="성공">성공</button>
+      <button class="tag-btn" data-tag="지혜">지혜</button>
+      <button class="tag-btn" data-tag="인내">인내</button>
+      <button class="tag-btn" data-tag="감사">감사</button>
+      <button class="tag-btn" data-tag="아침">아침</button>
+      <button class="tag-btn" data-tag="관계">관계</button>
+      <button class="tag-btn" data-tag="평안">평안</button>
+    </div>
+
+    <section id="card" class="card">
+      <button id="btn-fav" class="fav-btn" type="button" aria-pressed="false" aria-label="즐겨찾기 추가">♡</button>
+      <span id="card-badge" class="card-badge">성경구절</span>
+      <p id="card-text" class="card-text">내게 능력 주시는 자 안에서 내가 모든 것을 할 수 있느니라.</p>
+      <p id="card-source" class="card-source">— 빌립보서 4:13</p>
+      <p class="card-watermark">당신을 위한 한마디</p>
+    </section>
+
+    <div class="style-bar">
+      <label class="style-label">배경색
+        <input type="color" id="bg-color-input" value="#ffffff">
+      </label>
+      <label class="style-label">글자색
+        <input type="color" id="text-color-input" value="#2b2b2b">
+      </label>
+      <button id="btn-reset-color" class="mini-btn" type="button">초기화</button>
+    </div>
+
+    <div class="size-row">
+      <label class="style-label" for="size-select">저장 사이즈</label>
+      <select id="size-select">
+        <option value="default">기본 (카드 비율)</option>
+        <option value="kakao">카카오톡 프로필 (1:1)</option>
+        <option value="instagram">인스타그램 게시물 (1:1)</option>
+        <option value="instagram_story">인스타그램 스토리 (9:16)</option>
+      </select>
+    </div>
+
+    <div class="actions">
+      <button id="btn-new" class="btn btn-primary">
+        <span class="btn-icon">↻</span> 다른 구절 보기
+      </button>
+      <div class="actions-row">
+        <button id="btn-image" class="btn btn-secondary">이미지로 저장</button>
+        <button id="btn-copy" class="btn btn-secondary">텍스트 복사</button>
+        <button id="btn-share" class="btn btn-secondary">공유하기</button>
+      </div>
+    </div>
+
+    <p id="toast" class="toast"></p>
+
+    <p class="home-link"><a href="quotes/index.html">전체 문장 목록 보기</a> · <a href="favorites.html">즐겨찾기 보관함</a></p>
+
+  </main>
+
+  <!-- 하단 광고 슬롯 (선택) -->
+  <div class="ad-slot ad-slot--bottom">
+    <!--
+    <ins class="adsbygoogle"
+         style="display:block"
+         data-ad-client="ca-pub-XXXXXXXXXXXXXXXX"
+         data-ad-slot="XXXXXXXXXX"
+         data-ad-format="auto"
+         data-full-width-responsive="true"></ins>
+    <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+    -->
+  </div>
+
+  <footer class="site-footer">
+    <p>&copy; <span id="year"></span> 당신을 위한 한마디. 매일 새로운 문장을 만나보세요.</p>
+    <p><a href="about.html">소개</a> · <a href="privacy.html">개인정보처리방침</a> · <a href="terms.html">이용약관</a> · <a href="contact.html">문의</a></p>
+  </footer>
+
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+<script src="data.js"></script>
+<script src="script.js"></script>
+<script src="/consent-banner.js" defer></script>
+</body>
+</html>
