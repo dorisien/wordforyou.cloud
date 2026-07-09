@@ -4,6 +4,9 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="manifest" href="/manifest.json">
+<meta name="theme-color" content="#b08d57">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
 <title>당신을 위한 한마디 | 성경구절 &amp; 명언</title>
 <meta name="description" content="오늘도 행복할 당신을 위한 힘이 되는 한마디. 예쁜 카드로 저장하고 친구에게 공유해보세요.">
 
@@ -20,10 +23,6 @@
 <link rel="stylesheet" href="style.css">
 
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2436972032313052" crossorigin="anonymous"></script>
-<!--
-<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-XXXXXXXXXXXXXXXX" crossorigin="anonymous"></script>
---><meta name="google-site-verification" content="EuXCKiufiNtbzNyLFCHOCZdF7ZFpY9AiZZOvEvQQBe8" /><meta name="naver-site-verification" content="cd8a9bac27eeac39a55abcda8bac9ef846e85f7f" />
-
 </head>
 <body>
 
@@ -140,5 +139,12 @@
 <script src="data.js"></script>
 <script src="script.js"></script>
 <script src="/consent-banner.js" defer></script>
+<script>
+if ("serviceWorker" in navigator) {
+  window.addEventListener("load", function () {
+    navigator.serviceWorker.register("/sw.js").catch(function () {});
+  });
+}
+</script>
 </body>
 </html>

@@ -1,0 +1,18 @@
+{
+  "name": "당신을 위한 한마디",
+  "short_name": "한마디",
+  "description": "성경구절, 명언, 사자성어를 통해 매일 힘이 되는 한마디를 전합니다.",
+  "start_url": "/index.html",
+  "id": "/index.html",
+  "scope": "/",
+  "display": "standalone",
+  "background_color": "#faf9f6",
+  "theme_color": "#b08d57",
+  "orientation": "portrait",
+  "lang": "ko",
+  "icons": [
+    { "src": "/icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any" },
+    { "src": "/icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any" },
+    { "src": "/icon-512-maskable.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable" }
+  ]
+}
