@@ -1,0 +1,8 @@
+[{
+  "relation": ["delegate_permission/common.handle_all_urls"],
+  "target": {
+    "namespace": "android_app",
+    "package_name": "com.choiyoungjae.todaysword",
+    "sha256_cert_fingerprints": ["87:3E:40:95:3A:47:31:42:97:1B:BF:F6:20:3C:D3:5E:CC:78:BE:43:7F:33:E2:2B:B2:C3:E4:60:65:D3:68:84"]
+  }
+}]
